@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca de Tests</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f4efe7;
+    --bg-soft: #fbf8f3;
+    --surface: rgba(255, 255, 255, 0.84);
+    --surface-strong: #ffffff;
+    --surface-2: #f1ebe2;
+    --border: rgba(24, 45, 72, 0.12);
+    --border-strong: rgba(24, 45, 72, 0.2);
+    --accent: #224a7a;
+    --accent-soft: #e6edf6;
+    --accent-2: #8ea4bf;
+    --text: #182235;
+    --muted: #5d6b80;
+    --correct: #1d7a52;
+    --wrong: #b14444;
+    --shadow: 0 18px 50px rgba(32, 51, 79, 0.08);
+    --radius: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 36px 20px 80px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.92), transparent 38%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.25), transparent 28%),
+      linear-gradient(135deg, #f8f4ed 0%, #f1ebe2 48%, #f7f2ea 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(24, 45, 72, 0.03) 1px, transparent 1px);
+    background-size: 100% 38px;
+    opacity: 0.45;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 920px;
+    position: relative;
+    z-index: 1;
+  }
+
+  header {
+    margin-bottom: 34px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px 0 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  h1 {
+    font-family: "Fraunces", serif;
+    font-size: clamp(2.4rem, 6vw, 4.6rem);
+    font-weight: 700;
+    line-height: 0.98;
+    color: var(--text);
+    max-width: 10ch;
+  }
+
+  h1 span {
+    color: var(--accent);
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    margin-top: 4px;
+    max-width: 56ch;
+    line-height: 1.6;
+  }
+
+  .selector-card,
+  .card,
+  .results-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .selector-card::before,
+  .card::before,
+  .results-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  }
+
+  .selector-card {
+    padding: 28px 28px 24px;
+    margin-bottom: 28px;
+  }
+
+  .selector-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+
+  .selector-title {
+    font-family: "Fraunces", serif;
+    font-size: 1.45rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .selector-copy {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 600px;
+  }
+
+  .selector-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+    align-items: start;
+  }
+
+  .select-input,
+  .action-btn,
+  .btn-next,
+  .btn-restart {
+    border-radius: var(--radius);
+    font-family: inherit;
+  }
+
+  .select-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--text);
+    border: 1px solid var(--border);
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  }
+
+  .select-input[multiple] {
+    min-height: 220px;
+    padding: 10px;
+  }
+
+  .select-input[multiple] option {
+    padding: 12px 14px;
+    border-radius: 12px;
+    margin: 4px 0;
+    white-space: normal;
+  }
+
+  .selector-hint {
+    margin-top: 10px;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .select-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(34, 74, 122, 0.12);
+    background: var(--surface-strong);
+  }
+
+  .action-btn {
+    border: none;
+    padding: 16px 22px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    white-space: nowrap;
+    box-shadow: 0 12px 24px rgba(34, 74, 122, 0.18);
+  }
+
+  .action-btn:hover:not(:disabled),
+  .btn-next:hover,
+  .btn-restart:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .action-btn:disabled {
+    cursor: wait;
+    opacity: 0.6;
+  }
+
+  .selector-meta {
+    margin-top: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .active-test {
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 34px;
+    padding: 8px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    color: var(--muted);
+    background: rgba(255, 255, 255, 0.62);
+  }
+
+  .status-pill.loading {
+    color: var(--accent);
+    border-color: rgba(34, 74, 122, 0.22);
+  }
+
+  .status-pill.error {
+    color: var(--wrong);
+    border-color: rgba(177, 68, 68, 0.28);
+  }
+
+  .status-pill.ok {
+    color: var(--correct);
+    border-color: rgba(29, 122, 82, 0.28);
+  }
+
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding: 0 4px;
+  }
+
+  .progress-bar-track {
+    width: 100%;
+    height: 8px;
+    background: rgba(34, 74, 122, 0.08);
+    border-radius: 99px;
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 99px;
+    transition: width 0.4s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .card {
+    padding: 34px;
+    margin-bottom: 24px;
+    animation: slideIn 0.35s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .question-num {
+    font-size: 0.76rem;
+    color: var(--muted);
+    letter-spacing: 0.14em;
+    margin-bottom: 16px;
+  }
+
+  .question-text {
+    font-family: "Fraunces", serif;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    font-weight: 600;
+    line-height: 1.32;
+    color: var(--text);
+    margin-bottom: 30px;
+    max-width: 30ch;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 18px 20px;
+    border: 1px solid rgba(24, 45, 72, 0.1);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s, transform 0.15s, box-shadow 0.2s;
+    background: rgba(255, 255, 255, 0.72);
+    text-align: left;
+    color: var(--text);
+    font-family: "Inter", sans-serif;
+    font-size: 0.98rem;
+    line-height: 1.55;
+    width: 100%;
+  }
+
+  .option:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: var(--surface-strong);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(24, 45, 72, 0.08);
+  }
+
+  .option:disabled {
+    cursor: default;
+    transform: none;
+  }
+
+  .option-key {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(24, 45, 72, 0.16);
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+    transition: all 0.2s;
+    margin-top: 1px;
+    background: var(--bg-soft);
+  }
+
+  .option.correct {
+    border-color: var(--correct);
+    background: rgba(29, 122, 82, 0.08);
+  }
+
+  .option.correct .option-key {
+    background: var(--correct);
+    border-color: var(--correct);
+    color: #fff;
+  }
+
+  .option.wrong {
+    border-color: var(--wrong);
+    background: rgba(177, 68, 68, 0.08);
+  }
+
+  .option.wrong .option-key {
+    background: var(--wrong);
+    border-color: var(--wrong);
+    color: #fff;
+  }
+
+  .feedback {
+    margin-top: 20px;
+    padding: 15px 18px;
+    border-radius: var(--radius);
+    font-size: 0.94rem;
+    display: none;
+    animation: fadeIn 0.2s ease;
+    line-height: 1.55;
+  }
+
+  .feedback.show { display: block; }
+  .feedback.ok  { background: rgba(29, 122, 82, 0.09); color: var(--correct); border: 1px solid rgba(29, 122, 82, 0.18); }
+  .feedback.ko  { background: rgba(177, 68, 68, 0.09); color: var(--wrong); border: 1px solid rgba(177, 68, 68, 0.18); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .btn-next {
+    margin-top: 28px;
+    display: none;
+    width: 100%;
+    padding: 17px;
+    background: var(--accent);
+    color: #fff;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: 0 16px 28px rgba(34, 74, 122, 0.18);
+  }
+
+  .btn-next.show {
+    display: block;
+    animation: fadeIn 0.25s ease;
+  }
+
+  #results {
+    display: none;
+    animation: slideIn 0.4s cubic-bezier(.4, 0, .2, 1);
+  }
+
+  .results-card {
+    padding: 48px 36px;
+    text-align: center;
+  }
+
+  .score-label {
+    font-size: 0.76rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .score-big {
+    font-family: "Fraunces", serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent);
+  }
+
+  .score-total {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 8px;
+    margin-bottom: 32px;
+  }
+
+  .verdict {
+    font-family: "Fraunces", serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .verdict-sub {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  .btn-restart {
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--accent);
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 1px solid rgba(34, 74, 122, 0.22);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.15s;
+    box-shadow: inset 0 0 0 1px rgba(34, 74, 122, 0.08);
+  }
+
+  .btn-restart:hover {
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  .breakdown {
+    margin-top: 40px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .breakdown-item {
+    text-align: center;
+  }
+
+  .breakdown-num {
+    font-family: "Fraunces", serif;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .breakdown-num.ok { color: var(--correct); }
+  .breakdown-num.ko { color: var(--wrong); }
+
+  .breakdown-label {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  @media (max-width: 720px) {
+    body {
+      padding: 24px 14px 60px;
+    }
+
+    .selector-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .selector-head,
+    .selector-meta,
+    .progress-label {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .card,
+    .results-card,
+    .selector-card {
+      padding: 22px;
+    }
+
+    .btn-restart {
+      width: 100%;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>Selector de <span>Tests</span></h1>
+    <div class="subtitle">Elige cualquier cuestionario y hazlo con orden aleatorio en cada intento.</div>
+  </header>
+
+  <section class="selector-card">
+    <div class="selector-head">
+      <div>
+        <div class="selector-title">Biblioteca de cuestionarios</div>
+        <div class="selector-copy">Incluye el test original de la web y todos los PDFs de la carpeta <code>/pdfs</code>.</div>
+      </div>
+    </div>
+
+    <div class="selector-grid">
+      <div>
+        <select id="test-select" class="select-input" multiple size="10"></select>
+        <div class="selector-hint">Puedes seleccionar varios tests a la vez con `Ctrl` o `Cmd`, o marcarlos en bloque con `Shift`.</div>
+      </div>
+      <button id="load-test" class="action-btn">Cargar test</button>
+    </div>
+
+    <div class="selector-meta">
+      <div class="active-test" id="active-test">Test activo: cargando...</div>
+      <div class="status-pill" id="status-pill">Preparando tests...</div>
+    </div>
+  </section>
+
+  <div id="quiz-shell" class="hidden">
+    <div class="progress-label">
+      <span id="prog-text">Pregunta 1 de 1</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" id="prog-bar" style="width:0%"></div>
+    </div>
+
+    <div class="card" id="card">
+      <div class="question-num" id="q-num">PREGUNTA 01</div>
+      <div class="question-text" id="q-text"></div>
+      <div class="options" id="options"></div>
+      <div class="feedback" id="feedback"></div>
+      <button class="btn-next" id="btn-next">Siguiente pregunta →</button>
+    </div>
+  </div>
+
+  <div id="results">
+    <div class="results-card">
+      <div class="score-label">Resultado final</div>
+      <div class="score-big" id="score-big">—</div>
+      <div class="score-total" id="score-total"></div>
+      <div class="verdict" id="verdict"></div>
+      <div class="verdict-sub" id="verdict-sub"></div>
+      <div class="breakdown">
+        <div class="breakdown-item">
+          <div class="breakdown-num ok" id="n-correct">0</div>
+          <div class="breakdown-label">Correctas</div>
+        </div>
+        <div class="breakdown-item">
+          <div class="breakdown-num ko" id="n-wrong">0</div>
+          <div class="breakdown-label">Incorrectas</div>
+        </div>
+      </div>
+      <br><br>
+      <button class="btn-restart" id="restart-btn">↻ Repetir test activo</button>
+    </div>
+  </div>
+</div>
+
+<script src="pdf-tests-data.js"></script>
+<script type="module">
+
+const INLINE_QUESTIONS = [
+  {
+    text: "¿Qué es un método de desarrollo de software?",
+    options: [
+      "Un conjunto de técnicas y un proceso guiado para ayudar en la construcción de software",
+      "Un conjunto de técnicas y herramientas de ayuda para la construcción de software",
+      "Un proceso guiado, ayudado por una herramienta CASE (Computer-Aided Software Engineering), para la construcción de software"
+    ],
+    correct: 0
+  },
+  {
+    text: "¿Qué es el software?",
+    options: [
+      "Exclusivamente el código de los programas",
+      "Programas de computador, procedimientos, y posiblemente la documentación asociada y los datos pertenecientes a las operaciones de un sistema de computación",
+      "Las aplicaciones correspondientes a los sistemas de escritorio. El resto de aplicaciones se denominan sistemas de información web"
+    ],
+    correct: 1
+  },
+  {
+    text: "Un programa o conjunto de programas escritos para dar servicio a otros programas (compiladores, sistemas operativos, drivers, software de redes...) es:",
+    options: [
+      "Software de sistemas",
+      "Software de aplicaciones",
+      "Software científico / de ingeniería"
+    ],
+    correct: 0
+  },
+  {
+    text: "Un programa de contabilidad es:",
+    options: [
+      "Software de sistemas",
+      "Software de aplicaciones",
+      "Software científico / de ingeniería"
+    ],
+    correct: 1
+  },
+  {
+    text: "Software embebido o empotrado (embedded software) es el que:",
+    options: [
+      "Se utiliza especialmente en el ámbito de la restauración y de la construcción, con el objetivo de ayudar a arquitectos y/o diseñadores",
+      "Se incluye en un producto o sistema, usada para implementar y controlar ese mismo producto o sistema (e.g. consumo de gasolina en automóvil)",
+      "Cualquier aplicación incluida en un PC de escritorio"
+    ],
+    correct: 1
+  },
+  {
+    text: "El software legado (en inglés legacy software):",
+    options: [
+      "Se refiere al sistema operativo residente en un PC, portátil o incluso mainframe",
+      "Es el software heredado por los nuevos propietarios de una empresa, cuando ésta cambia de dueños",
+      "Se refiere al conjunto de programas existentes en una organización, desarrollados anteriormente, incluso con varias decenas de años de antigüedad"
+    ],
+    correct: 2
+  },
+  {
+    text: "¿Qué entiendes por ciclo de vida de una aplicación?",
+    options: [
+      "El conjunto de actividades asociadas al desarrollo y mantenimiento de la aplicación, incluyendo análisis, diseño, construcción, pruebas e implantación",
+      "Es exactamente lo mismo que el ciclo de desarrollo de una aplicación",
+      "Como en A, pero excluyendo el mantenimiento, es decir el ciclo de vida termina cuando se entrega la aplicación al usuario"
+    ],
+    correct: 0
+  },
+  {
+    text: "¿Es lo mismo el proceso software que el producto software?",
+    options: [
+      "Sí, ambos conceptos coinciden",
+      "No, el producto software es el programa o conjunto de programas que es resultado de la aplicación de un proceso software",
+      "A veces sí, pero otras veces no, no se puede generalizar"
+    ],
+    correct: 1
+  },
+  {
+    text: "¿Qué es MÉTRICA?",
+    options: [
+      "Un método de desarrollo de software, basado inicialmente en técnicas de análisis estructurado",
+      "Una técnica para estimar la complejidad de los algoritmos incluidos en un programa",
+      "Un estándar oficial de gestión y dirección de proyectos"
+    ],
+    correct: 0
+  },
+  {
+    text: "¿Qué es RUP?",
+    options: [
+      "Reality Unitary Program, una aplicación de simulación basada en técnicas de Realidad Virtual, que se usa también en Realidad Aumentada",
+      "Risk Uniform Plattform, una plataforma de Gestión de Riesgos de Seguridad",
+      "Rational Unified Process, un método de desarrollo de software basado en objetos, que utiliza la notación UML"
+    ],
+    correct: 2
+  },
+  {
+    text: "En el contexto de la Ingeniería del Software, ¿Qué es un artefacto?",
+    options: [
+      "Se refiere al hardware específico utilizado como plataforma para el desarrollo de software",
+      "Exclusivamente código, o partes del código, de la aplicación final",
+      "Cualquier elemento, modelo o entregable producido a lo largo del desarrollo de un producto software (e.g., diagrama E-R, código, manual de usuario,...)"
+    ],
+    correct: 2
+  },
+  {
+    text: "¿Es necesaria una planificación y gestión formal del proyecto de desarrollo de software?",
+    options: [
+      "En todos los casos, con independencia del tipo y tamaño de la aplicación o aplicaciones a construir",
+      "Solo en proyectos de cierto tamaño y complejidad, que así lo justifiquen",
+      "En ningún caso, lo importante es empezar cuanto antes con la codificación y poder entregar rápidamente los resultados"
+    ],
+    correct: 1
+  },
+  {
+    text: "El registro de indicadores en una empresa de desarrollo de software, como tiempos de desarrollo individuales, número de errores producidos en una empresa por programador y día, horas extra por programador y día, etc:",
+    options: [
+      "Es una actividad útil y requerida por distintos modelos de calidad, como CMMi o SPICE, para mejorar los procesos en la empresa",
+      "Es una actividad útil, pero exclusivamente para saber a quién es mejor despedir, en tiempos de crisis",
+      "Es una actividad inútil, que solo conduce a perder un tiempo que puedo dedicar a desarrollar y probar programas"
+    ],
+    correct: 0
+  },
+  {
+    text: "Indica la respuesta CORRECTA, sobre quién puede realizar el desempeño de la gestión y dirección de proyectos de Ingeniería del Software:",
+    options: [
+      "Es una labor propia de economistas y gestores de empresa, pero no de ingenieros ni de graduados en Informática",
+      "En todos los casos requiere estar certificado por los organismos internacionales autorizados para ello, como el OMG",
+      "Lo puede realizar cualquier persona con una formación técnica adecuada en gestión de proyectos y en Ingeniería de Software"
+    ],
+    correct: 2
+  },
+  {
+    text: "Indica qué afirmación es FALSA entre las siguientes:",
+    options: [
+      "Los proyectos de Ingeniería de Software tienen que ser abordados, en todos los casos, por métodos desarrollados específicamente para esta disciplina",
+      "Hay métodos de gestión de proyectos, como PMBOK, que sirven como base tanto para proyectos de Ingeniería de Software como para otras disciplinas (construcción, eléctricas, fabricación,...)",
+      "Los proyectos de Ingeniería de Software pueden ser abordados tanto por métodos generales prescriptivos adaptados, como PMBOK, como por métodos ágiles, como SCRUM"
+    ],
+    correct: 0
+  },
+  {
+    text: "¿Qué indicadores definen mejor el éxito de un proyecto de Ingeniería de Software?",
+    options: [
+      "El coste final del producto conseguido, exclusivamente. Esto es lo que mide al final el éxito de la empresa",
+      "La funcionalidad, con una calidad aceptable para el cliente, el coste, y el cumplimiento de los plazos",
+      "Solo el coste y la funcionalidad conseguida, con una calidad aceptable, del producto final"
+    ],
+    correct: 1
+  }
+];
+
+const PDF_TESTS = [
+  "B2-T1-1 CMMi 25-26 1nsle.pdf",
+  "B2-T1-2 CMMi 25-26 0vu3j.pdf",
+  "B3-T1-1 Introd. IR 25-26 nuu6m.pdf",
+  "B3-T1-2 Introd. IR 25-26 xyqns.pdf",
+  "B3-T2-1 Espec textuales 25-26 2p42v.pdf",
+  "B3-T2-2 Espec textuales 25-26 4k0d7.pdf",
+  "B3-T3-1 Tecns y Herrs 25-26 sgz4p.pdf",
+  "B3-T3-2 Tecns y Herrs 25-26 nb2cc.pdf",
+  "B3-T4-1 Reutil., Sost y Seg. 25-26 t6mwf.pdf",
+  "B3-T4-2 Reutil., Sost y Seg. 25-26 10mkd.pdf",
+  "B4-T1-1 Intro GesProy 25-26 4cqs7.pdf",
+  "B4-T1-2 Intro GesProy 25-26 l6sg5.pdf",
+  "B4-T2-1 Estim. y Planif. 25-26 63seq.pdf",
+  "B4-T2-2 Estim. y Planif. 25-26 p6vhy.pdf",
+  "B4-T3-1 Seguim, 25-26, xp28r.pdf",
+  "B4-T3-2 Seguim, 25-26 5gh5h.pdf"
+];
+
+const TESTS = [
+  {
+    id: "inline-b1-t1",
+    label: "B1 · T1 · Test original de la web",
+    meta: "16 preguntas",
+    source: "inline",
+    questions: INLINE_QUESTIONS
+  },
+  ...PDF_TESTS.map((filename, index) => ({
+    id: `pdf-${index + 1}`,
+    label: filename.replace(/\.pdf$/i, ""),
+    meta: "PDF en /pdfs",
+    source: "preloaded",
+    questions: window.PDF_TEST_DATA?.[filename] || []
+  }))
+];
+
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const selectEl = document.getElementById("test-select");
+const loadBtn = document.getElementById("load-test");
+const statusPill = document.getElementById("status-pill");
+const activeTestEl = document.getElementById("active-test");
+const quizShellEl = document.getElementById("quiz-shell");
+const resultsEl = document.getElementById("results");
+const nextBtn = document.getElementById("btn-next");
+const restartBtn = document.getElementById("restart-btn");
+
+let currentTests = [];
+let questions = [];
+let current = 0;
+let score = 0;
+let answered = false;
+
+function shuffle(arr) {
+  const copy = [...arr];
+  for (let i = copy.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy;
+}
+
+function buildQuestion(question) {
+  const indices = shuffle(question.options.map((_, index) => index));
+  return {
+    text: question.text,
+    options: indices.map(index => question.options[index]),
+    correct: indices.indexOf(question.correct)
+  };
+}
+
+function setStatus(message, kind = "neutral") {
+  statusPill.textContent = message;
+  statusPill.className = `status-pill${kind === "neutral" ? "" : ` ${kind}`}`;
+}
+
+function resetView() {
+  current = 0;
+  score = 0;
+  answered = false;
+  resultsEl.style.display = "none";
+  quizShellEl.classList.remove("hidden");
+}
+
+function updateActiveLabel() {
+  if (!currentTests.length) {
+    activeTestEl.textContent = "Tests activos: ninguno";
+    return;
+  }
+
+  if (currentTests.length === 1) {
+    activeTestEl.textContent = `Tests activos: ${currentTests[0].label}`;
+    return;
+  }
+
+  const names = currentTests.map(test => test.label);
+  const preview = names.slice(0, 3).join(", ");
+  const suffix = names.length > 3 ? ` y ${names.length - 3} más` : "";
+  activeTestEl.textContent = `Tests activos: ${preview}${suffix}`;
+}
+
+function normaliseText(value) {
+  return value
+    .replace(/\r/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{2,}/g, "\n")
+    .replace(/[ \t]{2,}/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractOptionSegments(block) {
+  const matches = [...block.matchAll(/(^|\n)\s*([A-Z]):\s*/gm)];
+  if (matches.length < 2) {
+    return null;
+  }
+
+  const first = matches[0];
+  const questionText = normaliseText(block.slice(0, first.index));
+  const options = matches.map((match, index) => {
+    const start = match.index + match[0].length;
+    const end = index + 1 < matches.length ? matches[index + 1].index : block.length;
+    return {
+      key: match[2],
+      text: normaliseText(block.slice(start, end))
+    };
+  });
+
+  return { questionText, options };
+}
+
+function parseQuestionsFromText(rawText) {
+  const blocks = rawText.split(/Pregunta número:\s*\d+/i).slice(1);
+  const parsed = [];
+
+  for (const block of blocks) {
+    const answerMatches = [...block.matchAll(/Respuesta correcta:\s*([A-Z])/gi)];
+    const answerMatch = answerMatches.at(-1);
+    if (!answerMatch || typeof answerMatch.index !== "number") {
+      continue;
+    }
+
+    const answerKey = answerMatch[1].toUpperCase();
+    const content = block.slice(0, answerMatch.index).trim();
+    const extracted = extractOptionSegments(content);
+
+    if (!extracted) {
+      continue;
+    }
+
+    const correctIndex = extracted.options.findIndex(option => option.key === answerKey);
+    if (correctIndex === -1) {
+      continue;
+    }
+
+    parsed.push({
+      text: extracted.questionText,
+      options: extracted.options.map(option => option.text),
+      correct: correctIndex
+    });
+  }
+
+  return parsed;
+}
+
+async function extractPdfText(path) {
+  const loadingTask = pdfjsLib.getDocument(path);
+  const pdf = await loadingTask.promise;
+  const pages = [];
+
+  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    const page = await pdf.getPage(pageNumber);
+    const textContent = await page.getTextContent();
+    const text = textContent.items
+      .map(item => ("str" in item ? item.str : ""))
+      .join("\n");
+    pages.push(text);
+  }
+
+  return pages.join("\n");
+}
+
+async function resolveTestQuestions(test) {
+  if (test.source === "inline" || test.source === "preloaded") {
+    return test.questions;
+  }
+
+  return [];
+}
+
+function loadQuestion() {
+  answered = false;
+  const question = questions[current];
+  const total = questions.length;
+  const pct = Math.round((current / total) * 100);
+
+  document.getElementById("prog-text").textContent = `Pregunta ${current + 1} de ${total}`;
+  document.getElementById("prog-pct").textContent = `${pct}%`;
+  document.getElementById("prog-bar").style.width = `${pct}%`;
+  document.getElementById("q-num").textContent = `PREGUNTA ${String(current + 1).padStart(2, "0")}`;
+  document.getElementById("q-text").textContent = question.text;
+
+  const optionsEl = document.getElementById("options");
+  optionsEl.innerHTML = "";
+
+  question.options.forEach((optionText, index) => {
+    const btn = document.createElement("button");
+    btn.className = "option";
+    btn.innerHTML = `<span class="option-key">${LETTERS[index]}</span><span>${optionText}</span>`;
+    btn.addEventListener("click", () => selectOption(index));
+    optionsEl.appendChild(btn);
+  });
+
+  const feedbackEl = document.getElementById("feedback");
+  feedbackEl.className = "feedback";
+  feedbackEl.textContent = "";
+  nextBtn.className = "btn-next";
+
+  const card = document.getElementById("card");
+  card.style.animation = "none";
+  card.offsetHeight;
+  card.style.animation = "";
+}
+
+function selectOption(chosen) {
+  if (answered) {
+    return;
+  }
+
+  answered = true;
+  const question = questions[current];
+  const buttons = document.querySelectorAll(".option");
+
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+
+  const isCorrect = chosen === question.correct;
+  if (isCorrect) {
+    score += 1;
+  }
+
+  buttons[chosen].classList.add(isCorrect ? "correct" : "wrong");
+  if (!isCorrect) {
+    buttons[question.correct].classList.add("correct");
+  }
+
+  const feedbackEl = document.getElementById("feedback");
+  feedbackEl.className = `feedback show ${isCorrect ? "ok" : "ko"}`;
+  feedbackEl.textContent = isCorrect
+    ? "✓ ¡Correcto!"
+    : `✕ Incorrecto. La respuesta correcta era: ${LETTERS[question.correct]}) ${question.options[question.correct]}`;
+
+  nextBtn.className = "btn-next show";
+  nextBtn.textContent = current + 1 < questions.length ? "Siguiente pregunta →" : "Ver resultado →";
+}
+
+function showResults() {
+  quizShellEl.classList.add("hidden");
+  const pct = Math.round((score / questions.length) * 100);
+
+  document.getElementById("score-big").textContent = `${pct}%`;
+  document.getElementById("score-total").textContent = `${score} de ${questions.length} preguntas correctas`;
+  document.getElementById("n-correct").textContent = score;
+  document.getElementById("n-wrong").textContent = questions.length - score;
+
+  let verdict = "";
+  let sub = "";
+  if (pct >= 90) {
+    verdict = "¡Sobresaliente!";
+    sub = "Dominas muy bien este bloque.";
+  } else if (pct >= 75) {
+    verdict = "Notable";
+    sub = "Muy buen resultado.";
+  } else if (pct >= 60) {
+    verdict = "Aprobado";
+    sub = "Vas bien, pero todavía hay margen para afinar.";
+  } else {
+    verdict = "Suspenso";
+    sub = "Conviene repasar el tema con más detalle.";
+  }
+
+  document.getElementById("verdict").textContent = verdict;
+  document.getElementById("verdict-sub").textContent = sub;
+  resultsEl.style.display = "block";
+}
+
+function restartCurrentTest() {
+  if (!currentTests.length || !questions.length) {
+    return;
+  }
+
+  resetView();
+  questions = shuffle(questions.map(question => buildQuestion(question)));
+  loadQuestion();
+}
+
+async function activateTests(testIds) {
+  const selected = TESTS.filter(test => testIds.includes(test.id));
+  if (!selected.length) {
+    setStatus("Selecciona al menos un test.", "error");
+    return;
+  }
+
+  loadBtn.disabled = true;
+  setStatus(selected.length === 1 ? "Cargando test..." : "Combinando tests...", "loading");
+
+  try {
+    const resolvedGroups = await Promise.all(selected.map(test => resolveTestQuestions(test)));
+    const baseQuestions = resolvedGroups.flat();
+
+    if (!baseQuestions.length) {
+      throw new Error("No hay preguntas disponibles en la selección actual.");
+    }
+
+    currentTests = selected;
+    questions = shuffle(baseQuestions.map(question => buildQuestion(question)));
+    updateActiveLabel();
+    resetView();
+    loadQuestion();
+    setStatus(
+      selected.length === 1
+        ? `${baseQuestions.length} preguntas listas`
+        : `${baseQuestions.length} preguntas listas en ${selected.length} tests`,
+      "ok"
+    );
+  } catch (error) {
+    quizShellEl.classList.add("hidden");
+    resultsEl.style.display = "none";
+    setStatus(error.message || "No se pudo cargar el test.", "error");
+  } finally {
+    loadBtn.disabled = false;
+  }
+}
+
+function populateSelector() {
+  TESTS.forEach(test => {
+    const option = document.createElement("option");
+    option.value = test.id;
+    option.textContent = `${test.label} · ${test.meta}`;
+    selectEl.appendChild(option);
+  });
+}
+
+nextBtn.addEventListener("click", () => {
+  current += 1;
+  if (current < questions.length) {
+    loadQuestion();
+  } else {
+    showResults();
+  }
+});
+
+restartBtn.addEventListener("click", () => {
+  restartCurrentTest();
+});
+
+loadBtn.addEventListener("click", () => {
+  const selectedIds = [...selectEl.selectedOptions].map(option => option.value);
+  activateTests(selectedIds);
+});
+
+populateSelector();
+updateActiveLabel();
+if (selectEl.options.length) {
+  selectEl.options[0].selected = true;
+}
+await activateTests([TESTS[0].id]);
+</script>
+</body>
+</html>
