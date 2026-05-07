@@ -852,11 +852,10 @@ function shuffle(arr) {
 }
 
 function buildQuestion(question) {
-  const indices = shuffle(question.options.map((_, index) => index));
   return {
     text: question.text,
-    options: indices.map(index => question.options[index]),
-    correct: indices.indexOf(question.correct)
+    options: [...question.options],
+    correct: question.correct
   };
 }
 
