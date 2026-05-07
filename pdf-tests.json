@@ -1630,5 +1630,413 @@
       ],
       "correct": 3
     }
+  ],
+  "B4-T4-1 Gestión Riesgos 25-26 rbu7a.pdf": [
+    {
+      "text": "Como responsable de la identificación de riesgos en un proyecto complejo, qué técnicas de recopilación de información utilizarías para esta identificación :",
+      "options": [
+        "Entrevistas, Análisis de Debilidades, Amenazas, Fortalezas y Oportunidades (DAFO)",
+        "Tormenta de Ideas, Técnica Delphi (entrevistas a participantes experimentados, interesados y expertos)",
+        "Cualquiera de las anteriores",
+        "Ninguna de las anteriores"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Para poder clasificar y priorizar numéricamente los riesgos sobre un determinado objetivo del proyecto informático:",
+      "options": [
+        "Usamos la Estructura de Desglose del Riesgo, donde se establecen directamente los valores numéricos obtenidos de las tablas de MAGERIT",
+        "Usamos la denominada matriz de probabilidad e impacto, donde cada objetivo del proyecto es clasificado de acuerdo con su probabilidad de ocurrencia y el impacto sobre un riesgo, en caso de que ocurra",
+        "Usamos la Estructura de Desglose de Trabajo, estableciendo para cada actividad la probabilidad del impacto de que ocurra el riesgo sobre esa actividad",
+        "Usamos la denominada matriz de probabilidad e impacto, donde cada riesgo es clasificado de acuerdo con su probabilidad de ocurrencia y el impacto sobre un objetivo, en caso de que ocurra"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "La Planificación de la Respuesta a los Riesgos en proyectos, según PMBOK:",
+      "options": [
+        "Persigue desarrollar opciones y determinar acciones para mejorar las oportunidades a los objetivos del proyecto, exclusivamente",
+        "Persigue desarrollar opciones y determinar acciones para reducir las amenazas a los objetivos del proyecto, exclusivamente",
+        "Persigue desarrollar opciones y determinar acciones tanto para para mejorar las oportunidades como para reducir las amenazas a los objetivos del proyecto",
+        "La Planificación de la Respuesta a los Riesgos no es un proceso de PMBOK, sino del método de Análisis y Gestión de Riesgos MAGERIT, exclusivamente"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Se nos ha encargado liderar el Análisis y Gestión de Riesgos del proyecto. Con el fin de poder identificar y organizar directamente las diversas fuentes de donde pueden surgir riesgos necesitamos:",
+      "options": [
+        "Definir La Estructura de Desglose de Tareas (EDT, o WBS)",
+        "Definir la Estructura de Desglose Riesgos (EDR, o RBS)",
+        "Definir la Escala de Impactos para los tres objetivos más importantes del proyecto",
+        "Seguir las guías MAGERIT estrictamente, donde encontramos el procedimiento para poder identificar y organizar directamente las diversas fuentes de riesgos en el proyecto de desarrollo de software"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Indica la respuesta CORRECTA, en relación con el Análisis y Gestión de Riesgos, según PMBOK, :",
+      "options": [
+        "La Planificación de Respuesta a los Riesgos se realiza después de haber realizado el Análisis Cualitativo y el Análisis Cuantitativo de Riesgos",
+        "El Análisis Cuantitativo de Riesgos se realiza después de la Planificación de Respuesta a los Riesgos, sólo sobre los riesgos más importantes identificados en esta Planificación",
+        "El Análisis Cualitativo de Riesgos se realiza después de la Planificación de Respuesta a los Riesgos",
+        "Ninguna de las anteriores, ya que la Planificación de Respuesta a los Riesgos, no es un proceso de PMBOK"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "La Gestión de Riesgos del proyecto, según PMBOK tiene como objetivos:",
+      "options": [
+        "Disminuir la probabilidad y el impacto de los eventos negativos o adversos para el proyecto",
+        "Aumentar la probabilidad y el impacto de los eventos positivos para el proyecto",
+        "Las dos anteriores",
+        "Ninguna de las anteriores, no podemos influir sobre estas probabilidades e impactos"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "En un proyecto identificamos el riesgo \"El personal contratado se retrasa en la entrega del sistema de notificaciones automáticas SMS\", con probabilidad de ocurrencia 20%, e impacto de 4 semanas de retraso sobre el proyecto. La exposición a riesgo es:",
+      "options": [
+        "La probabilidad efectiva de que ocurra este riesgo, 20%",
+        "El impacto real, solo valorado en caso de que ocurra, 4 semanas",
+        "El producto de la probabilidad por el impacto, 0,8 semanas",
+        "Ninguna de las anteriores"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Como responsable de la identificación de riesgos en un proyecto complejo, qué técnicas de diagramación utilizarías para representar las causas principales y secundarias de un riesgo:",
+      "options": [
+        "Diagramas causa-efecto, o de Espina de Pescado",
+        "Diagramas de casos de uso o diagramas de actividades",
+        "Diagramas de flujo o de sistemas",
+        "Diagramas de influencia, indicando solamente los bucles de realimentación negativa"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "El tiempo y coste total de un proyecto está estimado, respectivamente, en 1 mes y 1000 euros. En relación con el Análisis y Gestión de Riesgos contemplado en PMBOK, para este proyecto:",
+      "options": [
+        "Aplicaría de forma rigurosa todos sus procesos, incluyendo la responsabilidad de la gestión de los riesgos en una persona que se dedique exclusivamente a esta tarea a jornada completa",
+        "Aplicaría de forma rigurosa todos sus procesos, incluyendo el cálculo detallado de todos sus riesgos, probabilidades e impactos sobre todos los objetivos del proyecto",
+        "Las dos anteriores",
+        "Ninguna de las anteriores, el coste del proyecto no justifica la realización con tanto detalle de estas actividades"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "Los objetivos más importantes de un proyecto de los que trata PMBOK, sobre los que debemos extremar precauciones en cuanto a riesgos y oportunidades son (elige la mejor respuesta):",
+      "options": [
+        "El coste y el tiempo",
+        "El tiempo y la calidad",
+        "El coste, el tiempo, la calidad y el alcance",
+        "El coste, el tiempo, la calidad, el proceso de desarrollo software y el alcance"
+      ],
+      "correct": 2
+    }
+  ],
+  "B4-T4-2 Gestión Riesgos 25-26 w7iav.pdf": [
+    {
+      "text": "En el proyecto cruceristas, como desarrolladores, se nos presenta la oportunidad de solicitar una ayuda al Instituto de Fomento de la Región de Murcia, para proyectos del sector turístico, que podría cubrir el 80% del coste total. Para EXPLOTAR esta oportunidad:",
+      "options": [
+        "Abordaríamos nosotros mismos la solicitud del proyecto, sin ayuda externa, aunque no tengamos experiencia, así vamos aprendiendo",
+        "Contrataríamos a alguna empresa o grupo de investigación universitario experto en este tipo de solicitudes, aunque nos cueste lo mismo o más que la ayuda esperada",
+        "Contrataríamos a alguna empresa o grupo de investigación universitario experto en este tipo de solicitudes, siempre que nos cueste menos que la ayuda esperada",
+        "Tanto A como C serían opciones posibles y válidas"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "En el proyecto en curso se detecta la amenaza, para el objetivo de calidad, de \"90% de los programadores contratados son alumnos en prácticas\", con una probabilidad de ocurrencia de 0,90 y un impacto de 0,80 (escala 0-1). El riesgo es calificado como:",
+      "options": [
+        "Alto",
+        "Moderado",
+        "Bajo",
+        "No se considera un riesgo, si pensamos adoptar medidas de salvaguarda, como formación intensiva para esos programadores en prácticas"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Se identifica un riesgo de alta prioridad en el proyecto cruceristas, relativo al bajo número de ingenieros asignados a la actividad de testing, que puede ocasionar retrasos en el proyecto. Esta amenaza se puede MITIGAR:",
+      "options": [
+        "Disminuyendo la probabilidad de que esto ocurra, asignando más ingenieros a la tarea de testing",
+        "Aceptar la amenaza sin tomar medidas proactivas, ya que se trata de una amenaza de alta prioridad",
+        "Aumentando el impacto, procurando que la tarea de testing esté dentro de la ruta crítica del proyecto",
+        "Aplicando A y C simultáneamente"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Ante un conjunto de riesgos con impacto positivo en el proyecto (oportunidades), se deben intentar aprovechar con mayor énfasis los que tienen",
+      "options": [
+        "Alta probabilidad, alto impacto",
+        "Alta probabilidad, bajo impacto",
+        "Baja probabilidad, bajo impacto",
+        "Baja probabilidad, alto impacto"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Ante un conjunto de amenazas identificadas, con impacto negativo en el proyecto, se deben intentar eliminar las que tienen",
+      "options": [
+        "Alta probabilidad, alto impacto",
+        "Alta probabilidad, bajo impacto",
+        "Baja probabilidad, alto impacto",
+        "Todos los riesgos y amenazas deben eliminarse, con independencia de su probabilidad o impacto"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Como empresa de desarrollo hemos obtenido un contrato para realizar un proyecto importante, por 700.000€, a realizar en el plazo de 1 año. Identificamos el riesgo de no tener personal suficientemente preparado. Indica posibles medidas de salvaguarda:",
+      "options": [
+        "Si hay tiempo suficiente, formar a nuestro personal actual en las tecnologías necesarias para ese proyecto",
+        "Renunciar al proyecto, para no deteriorar la imagen de la empresa, y optar a proyectos más manejables",
+        "Contratar más personal con talento suficiente para el proyecto",
+        "A y C son correctas"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "Indica cuál(es) de las siguientes técnicas y/o herramientas podemos usar para realizar el Análisis Cualitativo de los riesgos de un proyecto:",
+      "options": [
+        "Entrevistas/reuniones con participantes seleccionados",
+        "Evaluación de probabilidad e impacto de los riesgos",
+        "Categorización de los riesgos",
+        "Todas las anteriores"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "El control de los riesgos de un proyecto es un proceso que puede implicar :",
+      "options": [
+        "Identificar por primera vez las principales categorías de riesgos y elaborar la correspondiente matriz de probabilidades e impactos",
+        "Revisar ejecución de respuestas a riesgos y evaluar su efectividad",
+        "A y B serían respuestas válidas",
+        "Las acciones indicadas en A y B añadiendo además la aplicación de un plan de contingencias o de reserva"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Indica la respuesta VERDADERA, en relación con los siguientes procesos del área de Gestión de los riesgos del proyecto",
+      "options": [
+        "El análisis cuantitativo se realiza después del análisis cualitativo",
+        "El análisis cuantitativo se realiza antes del análisis cualitativo",
+        "El análisis cualitativo se realiza simultáneamente al análisis cuantitativo",
+        "Si el proyecto es complejo, no es necesario realizar un análisis cuantitativo"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "En mi empresa me piden que seleccione un método o guía para analizar y gestionar los riesgos de nuestros sistemas de información en funcionamiento, hardware, software, personal, etc…Para ello:",
+      "options": [
+        "Usaría MAGERIT",
+        "Usaría PMBOK, en particular las recomendaciones del llamado dominio del desempeño de la incertidumbre",
+        "Podría usar tanto MAGERIT como las recomendaciones del llamado dominio del desempeño de la incertidumbre de PMBOK para ese fin",
+        "Ninguna de las otras"
+      ],
+      "correct": 0
+    }
+  ],
+  "B4-T5-1 Metds. agiles 25-26 6txx8.pdf": [
+    {
+      "text": "Indica cuál de los siguientes elementos NO forma parte expresa de los conceptos manejados en KANBAN",
+      "options": [
+        "Tableros de tareas, para visualizar los estados del proceso de desarrollo, mediante tarjetas",
+        "El llamado WIP (Work in Progress), que se usa para describir el número máximo de tareas que se puede realizar en cada fase de Kanban",
+        "La medición de los flujos de trabajo, con indicadores como el denominado \"lead time\"",
+        "Ciclo de desarrollo, o modelo de proceso, estrictamente secuencial (sin iteraciones)"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "Según diversos estudios y recomendaciones de expertos, ¿Cuál es el tamaño ideal de un equipo SCRUM?",
+      "options": [
+        "No hay un tamaño estándar recomendado",
+        "Lo más grande posible, según los recursos de la organización",
+        "3 ó menos",
+        "Entre 3-9"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "En un proyecto de desarrollo de una app para seguimiento de alergias al pólen, necesitamos describir muy claramente la trazabilidad entre requisitos. Para ello:",
+      "options": [
+        "No podemos usar Historias de Usuario, que no dan cuenta de la trazabilidad, sólo requisitos textuales convencionales siguiendo estándares del tipo de IEEE 830-1998 o bien ISO/IEC/IEEE 29148-2011",
+        "Podemos usar tanto Historias de Usuario como requisitos textuales convencionales siguiendo estándares del tipo de IEEE 830-1998 o bien ISO/IEC/IEEE 29148-2011",
+        "Como en B, pero añadiendo obligatoriamente un árbol o matriz de trazabilidad a la documentación de SCRUM",
+        "No podemos usar requisitos textuales convencionales siguiendo estándares del tipo de IEEE 830-1998 o bien ISO/IEC/IEEE 29148-2011, que no dan cuenta de la trazabilidad, sólo Historias de Usuario"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "En un proyecto de desarrollo de software para gestionar el inventario completo de una gran empresa de distribución, con almacenes en 7 comunidades autónomas, y donde el cliente exige que todos los procesos queden muy bien documentados:",
+      "options": [
+        "Recomendaría usar un método iterativo e incremental, como RUP o el llamado proceso de Larman",
+        "Recomendaría usar un método ágil, como MAGERIT o SCRUM",
+        "Recomendaría usar un método ágil, como SCRUM o KANBAN",
+        "Recomendaría usar un método iterativo e incremental como MAGERIT o ITIL"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "El requisito \"Como cliente, quiero poder ejecutar la app tanto en Android como en iOS, en todas sus versiones desde 2015\":",
+      "options": [
+        "Puedo expresarlo sin problemas como Historia de Usuario",
+        "No puedo expresarlo como Historia de Usuario, ya que es un requisito no funcional",
+        "No puedo expresarlo como Historia de Usuario, aunque sea un requisito funcional",
+        "En realidad no es un requisito, sino una restricción del proyecto que por tanto sólo puede aparecer en la documentación del proyecto, no en la especificación de requisitos"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Un diagrama de BurnDown del Sprint muestra, cada día:",
+      "options": [
+        "El coste efectivo del trabajo realizado hasta ese día, según su valor económico",
+        "Mediante tarjetas o \"post it\", el estado en que se encuentra cada Historia de Usuario o Tarea (pendiente, en proceso, terminada,...)",
+        "Una estimación de cuánto trabajo queda, hasta que el equipo haya terminado",
+        "El nivel de desgaste o cansancio físico, de cada miembro del equipo de desarrollo, de forma individualizada"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Indica cuál de los siguientes roles NO se considera como tal en SCRUM",
+      "options": [
+        "Scrum master",
+        "Jefe de proyecto",
+        "Programador del equipo de desarrollo",
+        "Dueño del producto (Product owner)"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "En relación con las fases, eventos o \"bloques de tiempo\", un proyecto SCRUM tiene:",
+      "options": [
+        "Una única fase, compuesta por un número de sprints determinados",
+        "Dos fases: Planificación del proyecto y conjunto de sprints o iteraciones",
+        "Tres fases: Planificación del proyecto, conjunto de sprints o iteraciones y fase de cierre o clausura",
+        "Tres fases: Planificación del proyecto, conjunto de sprints o iteraciones y conjunto de reuniones de Revisión de los Sprints"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "¿En qué reuniones de Scrum se presenta el incremento del producto y se orientan las discusiones hacia el producto y el cliente?",
+      "options": [
+        "En las reuniones de planificación del Sprint",
+        "En las reuniones diarias de Scrum",
+        "En las reuniones de revisión del Sprint",
+        "En las reuniones de retrospectiva del Sprint"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "En relación con la Lista de Producto (PB, Product Backlog) en SCRUM, indica la respuesta FALSA:",
+      "options": [
+        "El Product Owner es el principal responsable del PB",
+        "El Scrum Master es el principal responsable del PB",
+        "El PB puede contener tanto Historias de Usuario como Tareas, incluso podría contener requisitos textuales ordinarios o casos de uso.",
+        "Los elementos del PB pueden estar priorizados de manera ordenada, usando técnicas como la llamada \"MoSCoW\""
+      ],
+      "correct": 1
+    }
+  ],
+  "B4-T5-2 Metds. agiles 25-26 qqw1d.pdf": [
+    {
+      "text": "En el desarrollo de una app de gestión de mascotas con Scrum, la frase: Como usuario sin autenticar quiero iniciar sesión en el sistema indicando mi correo electrónico y mi contraseña para poder actuar como usuario autenticado",
+      "options": [
+        "Dado el nivel de abstracción y detalle con el que está expresado, sólo podría ser considerado como una tarea en Scrum",
+        "Dado el nivel de abstracción y detalle con el que está expresado, sólo podría ser considerado como un “epic” en Scrum",
+        "Tal y como está redactado, sólo podría considerarse como una historia de usuario",
+        "Podría considerarse tanto un requisito convencional como una historia de usuario"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "Sobre la relación de métodos de gestión de proyectos, como PMBOK, y métodos ágiles, como SCRUM, en su aplicación a un proyecto que incluye, entre otras actividades, el desarrollo de software, indica la respuesta CORRECTA:",
+      "options": [
+        "Al usar PMBOK, tanto el desarrollo de software, como el resto de actividades (sean del dominio que sean) deben gestionarse exclusivamente con PMBOK, sin poder usar ningún otro método de Ingeniería",
+        "En el mismo proyecto podría usar PMBOK para la gestión del proyecto y SCRUM para el desarrollo de software",
+        "Usaría SCRUM para la parte general de gestión del proyecto, y PMBOK para el desarrollo de software",
+        "No podría usar SCRUM. Para el desarrollo de software en ese proyecto sólo podría usar un método también prescriptivo como, por ejemplo, el de Larman"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Los bloques de tiempo, o fases, principales de Scrum son:",
+      "options": [
+        "Planificación del proyecto, Fase iterativa, Cierre",
+        "Planificación del Sprint, Iteraciones del Sprint, Entrega de Incremento de Producto",
+        "Planificación del proyecto, Reunión de revisión, Reunión de Retrospectiva, Cierre",
+        "Planificación del Sprint, Reunión diaria, Reunión de revisión, Reunión de Retrospectiva"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "La presentación del incremento del producto al cliente y el análisis de posibles cambios en el mercado que puedan afectar al producto, se realiza en:",
+      "options": [
+        "La reunión de retrospectiva del Sprint",
+        "La reunión diaria de cada Sprint",
+        "La reunión de planificación del Sprint",
+        "La reunión de revisión del Sprint"
+      ],
+      "correct": 3
+    },
+    {
+      "text": "Indica cuál de los siguientes métodos NO es un método válido de estimación de puntos de historia en un método ágil como Scrum.",
+      "options": [
+        "El método MoSCoW",
+        "El método de “Planning Poker”",
+        "Buscar una historia de usuario cuyo valor conozcamos bien por experiencia, y al resto asignarle los puntos en función de la de referencia",
+        "Buscar una historia de usuario de referencia (por ejemplo, la más sencilla, o bien una de dificultad intermedia), y al resto asignarle los puntos en función de la de referencia"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "En relación con la Lista de Producto (PB, Product Backlog) en SCRUM, indica la respuesta CORRECTA:",
+      "options": [
+        "Los programadores del equipo de trabajo son directa y solidariamente los únicos responsables del PB, y de la priorización de las historias de usuario que contiene",
+        "El Scrum Master define las prioridades de las historias de usuario en el PB",
+        "El Product Owner es el principal responsable del PB",
+        "Ninguna de las anteriores es correcta"
+      ],
+      "correct": 2
+    },
+    {
+      "text": "Para limitar el trabajo en progreso en Kanban, ¿qué indicador usamos para referirnos al número máximo de tareas que se puede realizar simultáneamente en cada fase?:",
+      "options": [
+        "WIP",
+        "Muro Kanban",
+        "“Lead time”",
+        "Ninguna de las anteriores. En KANBAN no se recomienda limitar el trabajo en progreso"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "En Scrum, para representar, cada día, la estimación (en horas o puntos de historia) de trabajo restante hasta completar un Sprint, se utiliza:",
+      "options": [
+        "En Scrum no se realiza este control, ya que el equipo de trabajo es suficientemente responsable para auto gestionar sus tareas",
+        "El llamado diagrama de “BurnDown” del Sprint",
+        "El llamado tablero de Scrum",
+        "En cada historia de usuario, indicando el tiempo restante como valor de la metainformación"
+      ],
+      "correct": 1
+    },
+    {
+      "text": "Indica la relación de jerarquía CORRECTA en métodos ágiles como SCRUM que usan historias de usuario:",
+      "options": [
+        "Una historia de usuario puede contener tareas, pero no temas",
+        "Una historia de usuario puede contener tareas y también temas",
+        "Una historia de usuario puede contener tanto tareas como “epics”",
+        "Un “epic” contiene tanto historias de usuario como temas"
+      ],
+      "correct": 0
+    },
+    {
+      "text": "Indica cuál de los siguientes elementos NO podría formar parte de una historia de usuario:",
+      "options": [
+        "Las pruebas de aceptación",
+        "La meta información o atributos de la historia",
+        "Las relaciones de trazabilidad con otras historias",
+        "Todos los elementos anteriores podrían formar parte de una historia de usuario"
+      ],
+      "correct": 3
+    }
   ]
 }
